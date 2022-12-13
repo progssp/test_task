@@ -5,7 +5,7 @@
         public function __construct(){
             $this->host = "localhost";
             $this->user = "user";
-            $this->password = "sspssp";
+            $this->password = "user";
             $this->db = "comp_bridgestone_task_db";
         }
 
