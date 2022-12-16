@@ -1,0 +1,4 @@
+#AuthType Basic 
+#AuthName "My Protected Folder" 
+#AuthUserFile C:/xampp/htdocs/task/.htpasswd 
+#require valid-user

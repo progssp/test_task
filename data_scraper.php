@@ -1,7 +1,6 @@
 <?php
   require_once(__DIR__."/db_controls.php");
 ?>
-
 <?php
     class DataScraper {
         private $updated_date;
@@ -101,15 +100,19 @@
         }
 
         public function calculate_date($symbol, $closing_date){
-            $updated_date = date('m/d/Y', strtotime($closing_date));
-            for($i=1;$i<=30;$i++){
+          $qry = "insert into saved_queries values(0,'".$symbol."','".date("Y-m-d",strtotime($closing_date))."')";
               
-              if($i != 1){
-                $updated_date = date('m/d/Y', strtotime($updated_date . "-1 day"));
-              }
-              $url = "https://bigcharts.marketwatch.com/historical/default.asp?symb=".$symbol."&closeDate=".$updated_date;
-              $res = $this->getData($url);
+          $data = new DatabaseControls();
+          $data->save_query($qry);
+          $updated_date = date('m/d/Y', strtotime($closing_date));
+          for($i=1;$i<=30;$i++){
+            
+            if($i != 1){
+              $updated_date = date('m/d/Y', strtotime($updated_date . "-1 day"));
             }
+            $url = "https://bigcharts.marketwatch.com/historical/default.asp?symb=".$symbol."&closeDate=".$updated_date;
+            $res = $this->getData($url);
+          }
         }
     }
 ?>

@@ -9,7 +9,7 @@
     $id = $_GET['id'];
 
     $data = new DatabaseControls();
-    $record_data = $data->select_query("select * from observations where id=".$_GET['id']);
+    $record_data = $data->select_query("select * from saved_queries where id=".$_GET['id']);
     $record_data = json_decode($record_data, true);
 ?>
 <?php
@@ -20,14 +20,14 @@
         $closing_price = $_POST['closing_price'];
         $volume = $_POST['volume'];
 
-        $qry = "update observations set symbol = '".$sym."', date = '".$date."', closing_price=".$closing_price.", volume=".$volume." where id=".$id;
+        $qry = "update saved_queries set symbol = '".$sym."', closing_date = '".$closing_date."' where id=".$id;
 
         $data->save_query($qry);
 
         $record_data = $data->select_query("select * from observations where id=".$_GET['id']);
         $record_data = json_decode($record_data, true);
 
-        $location = substr($_SERVER['REQUEST_URI'],0,strrpos($_SERVER['REQUEST_URI'],"/"));
+        $location = substr($_SERVER['REQUEST_URI'],0,strrpos($_SERVER['REQUEST_URI'],"/")) . "/saved_queries.php";
         header("location: " . $location);
     }
 ?>
@@ -55,23 +55,7 @@
                 <div class="col-md">
                     <div class="form-group">
                         <label for="symbol">Date</label>
-                        <input required type="text" name="date" id="" class="form-control" value="<?php echo (isset($record_data[0]['date']))?date('m/d/Y',strtotime($record_data[0]['date'])):''; ?>" />
-                    </div>
-                </div>
-            </div>
-
-            <div class="row" style="margin-top:10px;">
-                <div class="col-md">
-                    <div class="form-group">
-                        <label for="symbol">Closing price</label>
-                        <input required type="text" name="closing_price" id="" class="form-control" value="<?php echo (isset($record_data[0]['closing_price']))?$record_data[0]['closing_price']:''; ?>" />
-                    </div>
-                </div>
-
-                <div class="col-md">
-                    <div class="form-group">
-                        <label for="symbol">Volume</label>
-                        <input required type="text" name="volume" id="" class="form-control" value="<?php echo (isset($record_data[0]['volume']))?$record_data[0]['volume']:''; ?>" />
+                        <input required type="text" name="date" id="" class="form-control" value="<?php echo (isset($record_data[0]['closing_date']))?date('m/d/Y',strtotime($record_data[0]['closing_date'])):''; ?>" />
                     </div>
                 </div>
             </div>

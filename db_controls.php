@@ -5,8 +5,8 @@
         public function __construct(){
             $this->host = "localhost";
             $this->user = "user";
-            $this->password = "user";
-            $this->db = "comp_bridgestone_task_db";
+            $this->password = "useruser";
+            $this->db = "task_db";
         }
 
         public function connect(){
