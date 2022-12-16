@@ -35,16 +35,6 @@ CREATE TABLE `observations` (
   `volume` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
---
--- Dumping data for table `observations`
---
-
-INSERT INTO `observations` (`id`, `symbol`, `date`, `closing_price`, `volume`) VALUES
-(1, 'csco', '2000-12-30', 0, 0),
-(2, 'csco', '2000-12-29', 38.25, 72793305),
-(3, 'csco', '2000-12-28', 39.5625, 56397301);
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `saved_queries`
@@ -56,14 +46,6 @@ CREATE TABLE `saved_queries` (
   `closing_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
---
--- Dumping data for table `saved_queries`
---
-
-INSERT INTO `saved_queries` (`id`, `symbol`, `closing_date`) VALUES
-(1, 'msft', '0000-00-00'),
-(2, '', '2000-12-30'),
-(3, 'csco', '2000-12-30');
 
 --
 -- Indexes for dumped tables
